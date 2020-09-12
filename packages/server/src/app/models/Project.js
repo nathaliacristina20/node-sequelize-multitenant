@@ -5,9 +5,10 @@ class Project extends Model {
     super.init(
       {
         id: {
-          type: DataTypes.UUIDV4,
-          defaultValue: DataTypes.UUIDV4,
-          primaryKey: true
+          type: DataTypes.UUID,
+          primaryKey: true,
+          allowNull: false,
+          defaultValue: Sequelize.fn('uuid_generate_v4'),
         }
       },
       {

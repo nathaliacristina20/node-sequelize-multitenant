@@ -6,8 +6,9 @@ class Team extends Model {
       {
         id: {
           type: DataTypes.UUIDV4,
-          defaultValue: DataTypes.UUIDV4,
-          primaryKey: true
+          primaryKey: true,
+          allowNull: false,
+          defaultValue: Sequelize.fn("uuid_generate_v4"),
         },
       },
       {
