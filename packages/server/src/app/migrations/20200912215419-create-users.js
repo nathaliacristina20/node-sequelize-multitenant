@@ -5,6 +5,19 @@ module.exports = {
         type: Sequelize.UUID,
         primaryKey: true,
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

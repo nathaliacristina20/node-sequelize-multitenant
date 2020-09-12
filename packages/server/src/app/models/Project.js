@@ -1,4 +1,4 @@
-import Sequelize, { Model, DataTypes } from 'sequelize';
+import Sequelize, { Model, DataTypes } from "sequelize";
 
 class Project extends Model {
   static init(sequelize) {
@@ -8,8 +8,8 @@ class Project extends Model {
           type: DataTypes.UUID,
           primaryKey: true,
           allowNull: false,
-          defaultValue: Sequelize.fn('uuid_generate_v4'),
-        }
+          defaultValue: Sequelize.fn("uuid_generate_v4"),
+        },
       },
       {
         sequelize,
@@ -19,9 +19,7 @@ class Project extends Model {
     return this;
   }
 
-  static associate(models) {
-  }
-
+  static associate(models) {}
 }
 
 export default Project;

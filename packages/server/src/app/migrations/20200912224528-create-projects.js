@@ -5,6 +5,17 @@ module.exports = {
         type: Sequelize.UUID,
         primaryKey: true,
       },
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      team_id: {
+        type: Sequelize.UUID,
+        references: { model: 'teams', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
