@@ -1,19 +1,28 @@
-import Sequelize, { Model, DataTypes } from "sequelize";
-import SequelizeSlugify from "sequelize-slugify";
+import Sequelize, { Model } from 'sequelize';
+import slugify from 'slugify';
 
 class Team extends Model {
   static init(sequelize) {
     super.init(
       {
         id: {
-          type: DataTypes.UUIDV4,
+          type: Sequelize.UUIDV4,
           primaryKey: true,
           allowNull: false,
-          defaultValue: Sequelize.fn("uuid_generate_v4"),
+          defaultValue: Sequelize.UUIDV4,
+        },
+        name: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          unique: true,
         },
         slug: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           unique: true,
+        },
+        user_id: {
+          type: Sequelize.UUIDV4,
+          allowNull: false,
         },
       },
       {
@@ -21,8 +30,8 @@ class Team extends Model {
       }
     );
 
-    SequelizeSlugify.slugifyModel(Team, {
-      source: ["slug"],
+    this.addHook('beforeSave', async team => {
+      team.slug = slugify(team.name).toLowerCase();
     });
 
     return this;
@@ -30,10 +39,10 @@ class Team extends Model {
 
   static associate(models) {
     this.belongsToMany(models.User, {
-      through: "user_team",
-      as: "users",
-      foreignKey: "team_id",
-      otherKey: "user_id",
+      through: 'users_teams',
+      as: 'users',
+      foreignKey: 'team_id',
+      otherKey: 'user_id',
     });
   }
 }
