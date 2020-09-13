@@ -1,5 +1,5 @@
-import Sequelize, { Model, DataTypes } from "sequelize";
-import bcrypt from "bcryptjs";
+import Sequelize, { Model, DataTypes } from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 class User extends Model {
   static init(sequelize) {
@@ -27,7 +27,7 @@ class User extends Model {
       }
     );
 
-    this.addHook("beforeSave", async (user) => {
+    this.addHook('beforeSave', async user => {
       if (user.password) {
         user.password_hash = await bcrypt.hash(user.password, 8);
       }
@@ -38,10 +38,9 @@ class User extends Model {
 
   static associate(models) {
     this.belongsToMany(models.Team, {
-      through: "user_team",
-      as: "teams",
-      foreignKey: "user_id",
-      otherKey: "team_id",
+      through: 'users_teams',
+      as: 'teams',
+      foreignKey: 'user_id',
     });
   }
 

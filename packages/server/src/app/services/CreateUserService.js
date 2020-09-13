@@ -1,5 +1,5 @@
-import User from "../models/User";
-import AppError from "../errors/AppError";
+import User from '../models/User';
+import AppError from '../errors/AppError';
 
 class CreateUserService {
   async run(body) {
@@ -8,7 +8,7 @@ class CreateUserService {
     });
 
     if (userExists) {
-      throw new AppError("User already exists");
+      throw new AppError('User already exists');
     }
 
     const { id, name, email } = await User.create(body);

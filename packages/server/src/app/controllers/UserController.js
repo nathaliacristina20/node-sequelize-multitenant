@@ -1,5 +1,5 @@
-import User from "../models/User";
-import CreateUserService from "../services/CreateUserService";
+import User from '../models/User';
+import CreateUserService from '../services/CreateUserService';
 
 class UserController {
   async store(req, res) {
@@ -15,12 +15,12 @@ class UserController {
       const userExists = await User.findOne({ where: { email } });
 
       if (userExists) {
-        return res.status(400).json({ error: "User already exists." });
+        return res.status(400).json({ error: 'User already exists.' });
       }
     }
 
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
-      return res.status(401).json({ error: "Password does not match." });
+      return res.status(401).json({ error: 'Password does not match.' });
     }
 
     await user.update(req.body);
