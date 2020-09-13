@@ -1,10 +1,8 @@
-class Error {
-  message;
-  statusCode;
+class AppError {
   constructor(message, statusCode = 400) {
-      this.message = message;
-      this.statusCode = statusCode;
+    this.message = message;
+    this.statusCode = statusCode;
   }
 }
 
-export default Error;
+export default AppError;
