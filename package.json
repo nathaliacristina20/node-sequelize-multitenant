@@ -10,5 +10,8 @@
   },
   "repository": "https://github.com/nathaliacristina20/multitenant.git",
   "author": "Nathalia Oliveira <nathaliacristina20@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@multitenant/eslint-config": "*"
+  }
 }
