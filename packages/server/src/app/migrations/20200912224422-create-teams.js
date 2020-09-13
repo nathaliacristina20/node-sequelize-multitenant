@@ -5,17 +5,21 @@ module.exports = {
         type: Sequelize.UUID,
         primaryKey: true,
       },
-      user_id: {
-        type: Sequelize.UUID,
-        references: { model: "users", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       slug: {
         type: Sequelize.STRING,
         unique: true,
       },
+      user_id: {
+        type: Sequelize.UUID,
+        references: { model: "users", key: "id" },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+        allowNull: false,
+      },      
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

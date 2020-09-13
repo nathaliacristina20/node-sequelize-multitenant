@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import AppError from "./app/errors/AppError";
 import "express-async-errors";
+import { errors } from 'celebrate';
 import http from "http";
 import routes from './routes';
 
@@ -33,6 +34,9 @@ class App {
   }
 
   exceptionHandler() {
+
+    this.app.use(errors());
+    
     this.app.use((err, request, response, _) => {
       if (err instanceof AppError) {
         return response
