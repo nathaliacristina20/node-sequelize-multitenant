@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("teams", {
+    return queryInterface.createTable('teams', {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
@@ -8,6 +8,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       slug: {
         type: Sequelize.STRING,
@@ -15,11 +16,11 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.UUID,
-        references: { model: "users", key: "id" },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        references: { model: 'users', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
         allowNull: false,
-      },      
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -31,7 +32,7 @@ module.exports = {
     });
   },
 
-  down: (queryInterface) => {
-    return queryInterface.dropTable("teams");
+  down: queryInterface => {
+    return queryInterface.dropTable('teams');
   },
 };
